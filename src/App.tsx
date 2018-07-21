@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { HomeContainer } from './containers';
+import { TodoContainer } from './containers';
 
 export class App extends React.Component {
   render() {
     return (
-      <HomeContainer />
+        <TodoContainer />
     );
   }
 }

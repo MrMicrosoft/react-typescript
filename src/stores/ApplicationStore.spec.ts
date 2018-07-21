@@ -1,23 +1,24 @@
 import { ApplicationStore } from './ApplicationStore';
 
-test('that counters initial value is zero', () => {
+test('inital todos is empty', () => {
     const applicationStore = new ApplicationStore();
 
-    expect(applicationStore.counter).toBe(0);
+    expect(applicationStore.todos.length).toBe(0);
 });
 
-test('that increment, increments counter by one', () => {
+test('addTodo adds an Todo to the todos', () => {
     const applicationStore = new ApplicationStore();
 
-    applicationStore.increment();
+    applicationStore.addTodo({disc: "Hello", complete:false});
 
-    expect(applicationStore.counter).toBe(1);
+    expect(applicationStore.todos.length).toBe(1);
 });
 
-test('that decrement, decrements counter by one', () => {
+test('complete Todo changes Todo State to done', () => {
     const applicationStore = new ApplicationStore();
 
-    applicationStore.decrement();
+    applicationStore.addTodo({disc: "Hello", complete:false});
+    applicationStore.completeTodo({disc: "Hello", complete:false})
 
-    expect(applicationStore.counter).toBe(-1);
+    expect(applicationStore.todos[0].complete).toBe(true);
 });

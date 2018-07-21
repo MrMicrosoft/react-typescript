@@ -3,12 +3,13 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
 import { App } from './App';
 import { ApplicationStore } from './stores';
+import {ThemeProvider} from 'mineral-ui/themes'
 
 const applicationStore = new ApplicationStore();
 
 const renderApp = (root: Element, App: React.ComponentClass) => {
   ReactDOM.render((
-    <Provider store={applicationStore}><App /></Provider>
+    <Provider store={applicationStore}><ThemeProvider><App /></ThemeProvider></Provider>
   ), root);
 }
 

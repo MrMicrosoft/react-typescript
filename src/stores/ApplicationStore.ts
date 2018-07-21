@@ -1,17 +1,23 @@
 import { observable, action } from 'mobx';
 
+export interface Todo {
+    disc: String,
+    complete: boolean
+}
+
 export class ApplicationStore {
 
     @observable
-    counter = 0;
+    todos = new Array<Todo>();
 
     @action
-    increment = () => {
-        this.counter += 1;
+    addTodo = (todo: Todo) => {
+        this.todos.push(todo);
     }
 
     @action
-    decrement = () => {
-        this.counter -= 1;
+    completeTodo = (todo: Todo) => {
+        let index = this.todos.findIndex(todo1 => todo1.disc==todo.disc&&todo1.complete==todo.complete)
+        this.todos[index].complete = !this.todos[index].complete;
     }
 }
