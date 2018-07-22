@@ -11,7 +11,7 @@ test('Render Todos', () => {
         completeTodo={() => {}}         
     />);
 
-    expect(wrapper.find("#TodosContainer").children.length).toBe(20);
+    expect(wrapper.find("#TodosContainer").children.length).toBe(1);
 });
 
 test('Test addTodo button pressed', () => {
