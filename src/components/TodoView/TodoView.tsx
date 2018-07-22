@@ -24,6 +24,7 @@ export class TodoView extends React.Component<TodoViewProps, TodoViewState> {
 
     submitTodo = ()=>{
         this.props.addTodo({disc: this.state.todoTextField, complete: false});
+        this.setState({todoTextField: ""});
     }
     
     render() {
