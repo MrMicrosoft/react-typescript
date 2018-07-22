@@ -24,7 +24,7 @@ test('Test addTodo button pressed', () => {
     />);
 
     wrapper.setState({todoTextField: "Hello3"})
-    wrapper.find(Button).first().simulate('click');
+    wrapper.find("#submitButton").first().simulate('click');
 
     expect(addTodoSpy).toBeCalled();
 });

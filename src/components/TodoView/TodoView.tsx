@@ -46,6 +46,7 @@ export class TodoView extends React.Component<TodoViewProps, TodoViewState> {
                         name="todoDescription"
                     />
                     <Button
+                        id="submitButton"
                         onClick={this.submitTodo}
                     >Add Todo</Button>
                 </TodoInput>
