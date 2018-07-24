@@ -6,7 +6,6 @@ export interface Todo {
 }
 
 export class ApplicationStore {
-
     @observable
     todos = new Array<Todo>();
 
