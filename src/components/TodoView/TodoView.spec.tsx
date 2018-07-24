@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { TodoView } from './TodoView';
 import { shallow } from 'enzyme';
-import { NumberDisplay, Button } from './styles';
 
 test('Render Todos', () => {
     const wrapper = shallow(

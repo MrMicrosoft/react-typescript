@@ -9,7 +9,8 @@ const applicationStore = new ApplicationStore();
 
 const renderApp = (root: Element, App: React.ComponentClass) => {
   ReactDOM.render((
-    <Provider store={applicationStore}><ThemeProvider><App /></ThemeProvider></Provider>
+    <Provider store={applicationStore}><ThemeProvider>
+    <App /></ThemeProvider></Provider>
   ), root);
 }
 

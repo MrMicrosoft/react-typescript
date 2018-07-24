@@ -7,7 +7,8 @@ import Checkbox from 'mineral-ui/Checkbox';
 
 interface TodoItemProps {
     todo: Todo;
-    completeTodo: (todo: Todo) => void;
+    index: number;
+    completeTodo: (index: number) => void;
 }
 
 @observer
@@ -15,9 +16,9 @@ export class TodoItem extends React.Component<TodoItemProps, {}> {
     onChangeCheckbox=(event)=>{
         const {
             completeTodo,
-            todo
+            index
         } = this.props;
-        completeTodo(todo);
+        completeTodo(index);
     }
 
     render() {

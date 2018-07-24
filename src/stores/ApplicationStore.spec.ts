@@ -18,7 +18,7 @@ test('complete Todo changes Todo State to done', () => {
     const applicationStore = new ApplicationStore();
 
     applicationStore.addTodo({disc: "Hello", complete:false});
-    applicationStore.completeTodo({disc: "Hello", complete:false})
+    applicationStore.completeTodo(0)
 
     expect(applicationStore.todos[0].complete).toBe(true);
 });

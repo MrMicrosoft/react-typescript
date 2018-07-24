@@ -5,11 +5,14 @@ import {Container, TodoInput, TodoItemStyle} from './styles';
 import {TodoItem} from './TodoItem'
 import Button from 'mineral-ui/Button';
 import TextInput from 'mineral-ui/TextInput';
+import { FormField, FormFieldset} from 'mineral-ui/Form'
+import {IconBackspace} from 'mineral-ui-icons'
+import {css} from 'react-emotion';
 
 interface TodoViewProps {
     todos: Array<Todo>;
     addTodo: (todo: Todo) => void;
-    completeTodo: (todo: Todo) => void;
+    completeTodo: (index: number) => void;
 }
 
 interface TodoViewState {
@@ -18,6 +21,11 @@ interface TodoViewState {
 
 @observer
 export class TodoView extends React.Component<TodoViewProps, TodoViewState> {
+    constructor(props){
+        super(props);
+        this.state = {todoTextField :""}
+    }
+
     onChangeTextField = (event)=>{
         this.setState({todoTextField: event.target.value})
     }
@@ -25,6 +33,7 @@ export class TodoView extends React.Component<TodoViewProps, TodoViewState> {
     submitTodo = ()=>{
         this.props.addTodo({disc: this.state.todoTextField, complete: false});
         this.setState({todoTextField: ""});
+        console.log(this.props.todos);
     }
     
     render() {
@@ -35,23 +44,26 @@ export class TodoView extends React.Component<TodoViewProps, TodoViewState> {
         } = this.props;
 
         return (
-            <Container>
+            <div style={{alignItems: "center"}}>
                 <Container id="TodosContainer">
-                     {
-                        todos.map((todo, i)=><TodoItemStyle key={i}><TodoItem key={i} todo={todo} completeTodo={completeTodo}/></TodoItemStyle>)}
+                     {todos.map((todo, i)=><TodoItemStyle key={i}><TodoItem index={i} key={i} todo={todo} completeTodo={completeTodo}/></TodoItemStyle>)}
                 </Container>
                 <TodoInput>
+                    <FormField label="Description" className={css({width: "100%"})}>
                     <TextInput 
-                        width="80%" 
                         onChange={this.onChangeTextField}
-                        name="todoDescription"
-                    />
-                    <Button
-                        id="submitButton"
-                        onClick={this.submitTodo}
-                    >Add Todo</Button>
+                        name="todoTextField"
+                        value={this.state.todoTextField}
+                        iconEnd={<IconBackspace/>}
+                        style={{width: "100%"}}/>
+                    </FormField>
+                    <FormField label="Add Todo">
+                        <Button
+                            id="submitButton"
+                            onClick={this.submitTodo}>Add Todo</Button>
+                    </FormField>
                 </TodoInput>
-            </Container>
+            </div>
         )
     }
 }

@@ -16,8 +16,7 @@ export class ApplicationStore {
     }
 
     @action
-    completeTodo = (todo: Todo) => {
-        let index = this.todos.findIndex(todo1 => todo1.disc==todo.disc&&todo1.complete==todo.complete)
+    completeTodo = (index: number) => {
         this.todos[index].complete = !this.todos[index].complete;
     }
 }
