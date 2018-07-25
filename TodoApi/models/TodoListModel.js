@@ -1,10 +1,10 @@
 'use strict';
 const fs = require('fs');
 
-module.loadTodos = function(){
-    return JSON.parse(fs.readFileSync("todos.json"))
+module.exports.loadTodos = function(){
+    return JSON.parse(fs.readFileSync("store/todos.json"))
 }
 
-module.saveTodos = function(todos){
-    fs.writeFileSync('todos.json', JSON.stringify(todos));
+module.exports.saveTodos = function(todos){
+    fs.writeFileSync('store/todos.json', JSON.stringify(todos));
 }

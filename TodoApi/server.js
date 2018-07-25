@@ -3,9 +3,7 @@ var express = require('express'),
     port = process.env.PORT || 8000,
     bodyParser = require('body-parser');
 var moment = require('moment');
-var cors = require('cors');
-
-//mongoose instance connection url connection
+var model = require('./models/TodoListModel');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({limit: '50mb'}));
