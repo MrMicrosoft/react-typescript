@@ -12,9 +12,6 @@ export interface TodoResponse {
 }
 
 export class ApplicationStore {
-    constructor(){
-    }
-
     @observable
     todos = new Array<Todo>();
 
