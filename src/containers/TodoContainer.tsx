@@ -10,6 +10,9 @@ interface TodoContainerProps {
 @inject('store')
 @observer
 export class TodoContainer extends React.Component<TodoContainerProps, {}> {
+    componentWillMount(){
+        this.props.store.loadTodos();
+    }
 
     render() {
         const { store } = this.props;

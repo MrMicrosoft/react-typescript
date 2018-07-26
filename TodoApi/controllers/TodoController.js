@@ -1,7 +1,7 @@
 const TodoListModel = require('../models/TodoListModel')
 
 exports.getAll = function (req, res){
-    res.send({success: true, data: TodoListModel.loadTodos()});
+    res.send({success: true, data: TodoListModel.loadTodos()})
 };
 
 exports.getTodo = function (req, res){
