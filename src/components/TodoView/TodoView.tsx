@@ -49,9 +49,13 @@ export class TodoView extends React.Component<TodoViewProps, TodoViewState> {
 
         return (
             <div style={{alignItems: "center"}}>
+                <div style={{margin: "50px"}}>
+                    <AutoComplete todos={todos}/>
+                </div>
                 <Container id="TodosContainer">
                      {todos.map((todo, i)=><TodoItemStyle key={i}><TodoItem index={i} key={i} todo={todo} completeTodo={completeTodo}/></TodoItemStyle>)}
                 </Container>
+                
                 <TodoInput>
                     <FormField label="Description" className={css({width: "100%"})}>
                     <TextInput 

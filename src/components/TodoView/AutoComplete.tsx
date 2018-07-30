@@ -1,12 +1,7 @@
 import * as React from 'react';
-import {Autosuggest} from 'react-autosuggest';
+import * as Autosuggest from 'react-autosuggest';
 import {Todo} from '../../stores/ApplicationStore';
-
-const renderSuggestion = suggestion => (
-  <div>
-    {suggestion.disc}
-  </div>
-);
+import './AutoCompleteStyle.css';
 
 interface AutocompleteProps {
   todos: Todo[]
@@ -64,21 +59,19 @@ export class AutoComplete extends React.Component<AutocompleteProps,Autocomplete
   };
 
   render() {
-    const { value, suggestions } = this.state;
-
     const inputProps = {
       placeholder: 'Type a programming language',
-      value,
+      value: this.state.value,
       onChange: this.onChange
     };
 
     return (
       <Autosuggest
-        suggestions={suggestions}
+        suggestions={this.state.suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         getSuggestionValue={this.getSuggestionValue}
-        renderSuggestion={renderSuggestion}
+        renderSuggestion={this.renderSuggestion}
         inputProps={inputProps}
       />
     );
