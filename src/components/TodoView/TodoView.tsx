@@ -8,6 +8,7 @@ import TextInput from 'mineral-ui/TextInput';
 import { FormField, FormFieldset} from 'mineral-ui/Form'
 import {IconBackspace} from 'mineral-ui-icons'
 import {css} from 'react-emotion';
+import { AutoComplete } from './AutoComplete';
 
 interface TodoViewProps {
     todos: Array<Todo>;
@@ -33,6 +34,10 @@ export class TodoView extends React.Component<TodoViewProps, TodoViewState> {
     submitTodo = ()=>{
         this.props.addTodo({disc: this.state.todoTextField, complete: false, id: this.props.todos.length});
         this.setState({todoTextField: ""});
+    }
+
+    componentDidCatch(error, info){
+        console.log({error, info});
     }
     
     render() {

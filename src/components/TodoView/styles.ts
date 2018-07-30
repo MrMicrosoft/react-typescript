@@ -21,3 +21,7 @@ export const TodoInput = styled.div`
 export const TodoItemStyle = styled.div`
   margin-bottom: 10px;
 `;
+
+export const AutoComplete = styled.div`
+  display: flex;
+`;
