@@ -1,36 +1,27 @@
 import * as React from 'react';
 import * as Autosuggest from 'react-autosuggest';
 import {Todo} from '../../stores/ApplicationStore';
+import TextInput from 'mineral-ui/TextInput';
+import {FormField} from 'mineral-ui/Form'
 import './AutoCompleteStyle.css';
 
 interface AutocompleteProps {
-  todos: Todo[]
+  source: any[],
+  value: string,
+  onChange: (event: any, obj: any)=>void,
+  getSuggestions: (value: string, source: any)=>any[],
+  getFormatedString: (value: any)=>string
 }
 
 interface AutocompleteState {
-  value: string,
-  suggestions: Todo[] 
+  suggestions: any[]
 }
 
 export class AutoComplete extends React.Component<AutocompleteProps,AutocompleteState>{
   constructor(props) {
     super(props);
-
-    this.state = {
-      value: '',
-      suggestions: []
-    };
+    this.state = {suggestions: []}
   }
-
-  getSuggestions = value => {
-    const {todos} = this.props;
-    const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
-  
-    return inputLength === 0 ? [] : todos.filter(lang =>
-      lang.disc.toLowerCase().slice(0, inputLength) === inputValue
-    );
-  };
 
   getSuggestionValue = suggestion => suggestion.disc;
 
@@ -40,15 +31,9 @@ export class AutoComplete extends React.Component<AutocompleteProps,Autocomplete
     </div>
   );
 
-  onChange = (event, { newValue }) => {
-    this.setState({
-      value: newValue
-    });
-  };
-
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
-      suggestions: this.getSuggestions(value)
+      suggestions: this.props.getSuggestions(value, this.props.source)
     });
   };
 
@@ -58,15 +43,25 @@ export class AutoComplete extends React.Component<AutocompleteProps,Autocomplete
     });
   };
 
+  renderInputComponent = inputProps => {
+    return (
+      <FormField label="Test">
+        <TextInput {...inputProps}/>
+      </FormField>
+    )
+  }
+
   render() {
+    const {value, onChange} = this.props;
+
     const inputProps = {
-      placeholder: 'Test Autocomplete Component',
-      value: this.state.value,
-      onChange: this.onChange
+      value,
+      onChange
     };
 
     return (
       <Autosuggest
+        renderInputComponent={this.renderInputComponent}
         suggestions={this.state.suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}

@@ -17,14 +17,15 @@ interface TodoViewProps {
 }
 
 interface TodoViewState {
-    todoTextField: String
+    todoTextField: string,
+    autocompleteField: string
 }
 
 @observer
 export class TodoView extends React.Component<TodoViewProps, TodoViewState> {
     constructor(props){
         super(props);
-        this.state = {todoTextField :""}
+        this.state = {todoTextField :"", autocompleteField: ""}
     }
 
     onChangeTextField = (event)=>{
@@ -41,6 +42,19 @@ export class TodoView extends React.Component<TodoViewProps, TodoViewState> {
     componentDidCatch(error, info){
         console.log({error, info});
     }
+
+    getSuggestions = (value,source) => {
+        const inputValue = value.trim().toLowerCase();
+        const inputLength = inputValue.length;
+      
+        return inputLength === 0 ? [] : source.filter(lang =>
+          lang.disc.toLowerCase().slice(0, inputLength) === inputValue
+        );
+    };
+
+    onChange = (event, {newValue}) =>{
+        this.setState({autocompleteField: newValue})
+    }
     
     render() {
         const {
@@ -52,8 +66,14 @@ export class TodoView extends React.Component<TodoViewProps, TodoViewState> {
         return (
             <div style={{alignItems: "center"}}>
                 <div style={{margin: "50px"}}>
-                    <AutoComplete todos={todos}/>
+                    <AutoComplete 
+                        source={todos as any[]}
+                        value={this.state.autocompleteField}
+                        onChange={this.onChange}
+                        getSuggestions={this.getSuggestions} 
+                        getFormatedString={(value)=>value.disc}/>
                 </div>
+
                 <Container id="TodosContainer">
                      {todos.map((todo, i)=><TodoItemStyle key={i}><TodoItem index={i} key={i} todo={todo} completeTodo={completeTodo}/></TodoItemStyle>)}
                 </Container>
