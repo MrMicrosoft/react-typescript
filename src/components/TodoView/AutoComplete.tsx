@@ -23,11 +23,9 @@ export class AutoComplete extends React.Component<AutocompleteProps,Autocomplete
     this.state = {suggestions: []}
   }
 
-  getSuggestionValue = suggestion => suggestion.disc;
-
   renderSuggestion = suggestion => (
     <div>
-      {suggestion.disc}
+      {this.props.getFormatedString(suggestion)}
     </div>
   );
 
@@ -65,7 +63,7 @@ export class AutoComplete extends React.Component<AutocompleteProps,Autocomplete
         suggestions={this.state.suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={this.getSuggestionValue}
+        getSuggestionValue={this.props.getFormatedString}
         renderSuggestion={this.renderSuggestion}
         inputProps={inputProps}
       />
