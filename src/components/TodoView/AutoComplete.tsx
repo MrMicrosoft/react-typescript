@@ -60,7 +60,7 @@ export class AutoComplete extends React.Component<AutocompleteProps,Autocomplete
 
   render() {
     const inputProps = {
-      placeholder: 'Type a programming language',
+      placeholder: 'Test Autocomplete Component',
       value: this.state.value,
       onChange: this.onChange
     };

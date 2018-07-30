@@ -13,9 +13,10 @@ export const Container = styled.div`
 
 export const TodoInput = styled.div`
   display: flex;
-  width: 100%;
+  width: 90%;
   position: fixed;
-  bottom: 2px;
+  bottom: 10px;
+  padding: 0px 10px 0px 10px;
 `;
 
 export const TodoItemStyle = styled.div`
