@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { TodoContainer } from './containers';
+import {ConversationUIContainer} from './containers';
 
 export class App extends React.Component {
   render() {
     return (
-        <TodoContainer />
+        <ConversationUIContainer/>
     );
   }
 }
