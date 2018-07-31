@@ -13,7 +13,10 @@ export class ConversationUIContainer extends React.Component<ConversationUIConta
     render() {
         const { store } = this.props;
         return (
-            <ConversationUI/>
+            <ConversationUI
+                conversation={store.conversations[0]}
+                addMessage={store.addMessage}
+            />
         )
     }
 }

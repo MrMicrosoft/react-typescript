@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as Autosuggest from 'react-autosuggest';
-import {Todo} from '../../stores/ApplicationStore';
 import TextInput from 'mineral-ui/TextInput';
 import {FormField} from 'mineral-ui/Form'
 import './AutoCompleteStyle.css';

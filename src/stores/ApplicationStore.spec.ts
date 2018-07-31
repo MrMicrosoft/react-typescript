@@ -1,4 +1,4 @@
-import { ApplicationStore } from './ApplicationStore';
+import { ApplicationStore, MessageType } from './ApplicationStore';
 import * as fetchMock from 'fetch-mock';
 
 test('inital todos is empty', () => {
@@ -14,6 +14,20 @@ test('addTodo adds an Todo to the todos', () => {
 
     expect(applicationStore.todos.length).toBe(1);
 });
+
+test('Testing correct Conversation Model', ()=>{
+    const applicationStore = new ApplicationStore();
+
+    expect(applicationStore.conversations.length).toBe(1);
+})
+
+test('addMessage to first Conversation', ()=>{
+    const applicationStore = new ApplicationStore();
+
+    applicationStore.addMessage({id: 1, msg: "Hello", type: MessageType.Input})
+
+    expect(applicationStore.conversations[0].messages.length).toBe(1);
+})
 
 test('complete Todo changes Todo State to done', () => {
     const applicationStore = new ApplicationStore();

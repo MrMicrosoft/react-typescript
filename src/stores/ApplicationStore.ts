@@ -11,12 +11,35 @@ export interface TodoResponse {
     data: Todo[]
 }
 
-export class ApplicationStore {
-    constructor(){
-    }
+export enum MessageType {
+    Input="Input",
+    Output="Output"
+}
 
+export interface Message {
+    id: number,
+    msg: String,
+    type: MessageType
+}
+
+export interface Conversation {
+    id: number,
+    title: String,
+    desc: String,
+    messages?: Message[]
+}
+
+export class ApplicationStore {
     @observable
     todos = new Array<Todo>();
+
+    @observable
+    conversations = new Array<Conversation>({id: 1, title: "Hello Conversation", desc: "asdf", messages: []});
+
+    @action
+    addMessage = (message: Message) => {
+        this.conversations[0].messages.push(message);
+    }
 
     @action
     addTodo = (todo: Todo) => {
