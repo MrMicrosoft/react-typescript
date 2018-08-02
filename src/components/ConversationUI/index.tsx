@@ -25,18 +25,20 @@ export class ConversationUI extends React.Component<ConversationUIProps, {}> {
         const {title, desc, messages} = this.props.conversation;
         return (
             <div>
-            <Flex
-                direction="column"
-                className="container">
-                <FlexItem className="title"><h2>{title}</h2></FlexItem>
-                <FlexItem className="desc"><h3>{desc}</h3></FlexItem>
-                <FlexItem>
-                    {messages.map((message, i)=>
-                        <MessageView key={i} message={message}/>
-                    )}
-                </FlexItem>
-            </Flex>
-            <MessageInputStyled><MessageInput addMessage={this.props.addMessage}/></MessageInputStyled>
+                <Flex
+                    direction="column"
+                    className="container">
+                    <FlexItem className="title"><h2>{title}</h2></FlexItem>
+                    <FlexItem className="desc"><h3>{desc}</h3></FlexItem>
+                    <FlexItem>
+                        {messages.map((message, i)=>
+                            <MessageView key={i} message={message}/>
+                        )}
+                    </FlexItem>
+                </Flex>
+                <MessageInputStyled>
+                    <MessageInput addMessage={this.props.addMessage}/>
+                </MessageInputStyled>
             </div>
             
         )

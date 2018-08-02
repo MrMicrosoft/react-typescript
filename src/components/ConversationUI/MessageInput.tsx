@@ -36,7 +36,7 @@ export class MessageInput extends React.Component<MessageInputProps, MessageInpu
     render() {
         return (
             <AutoComplete 
-                source={["Test1", "Test2"] as any[]}
+                source={["Test1", "Test2", "Test3","Test4", "Test5", "Test6", "Test7"] as any[]}
                 getFormatedString={(value)=>value}
                 getSuggestions={this.getSuggestions}
                 value={this.state.text}

@@ -23,11 +23,15 @@ export class AutoComplete extends React.Component<AutocompleteProps,Autocomplete
     this.state = {suggestions: []}
   }
 
-  renderSuggestion = suggestion => (
-    <div>
-      {this.props.getFormatedString(suggestion)}
-    </div>
-  );
+  renderSuggestion=(suggestion, {query})=>{
+    const suggestionString = this.props.getFormatedString(suggestion);
+
+    return (
+      <span>
+        {suggestionString.replace("query", "<span style={{}}")}
+      </span>
+    )
+  }
 
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
