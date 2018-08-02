@@ -39,10 +39,6 @@ export class TodoView extends React.Component<TodoViewProps, TodoViewState> {
         }
     }
 
-    componentDidCatch(error, info){
-        console.log({error, info});
-    }
-
     getSuggestions = (value,source) => {
         const inputValue = value.trim().toLowerCase();
         const inputLength = inputValue.length;
