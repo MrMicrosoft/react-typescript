@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { observer } from "mobx-react";
-import {Todo} from "../../stores/ApplicationStore";
+import { ITodo } from "../../stores/ApplicationStore";
 import {Container, TodoInput, TodoItemStyle} from "./styles";
 import {TodoItem} from "./TodoItem";
 
@@ -14,8 +14,8 @@ import {css} from "react-emotion";
 import { AutoComplete } from "./AutoComplete";
 
 interface ITodoViewProps {
-    todos: Todo[];
-    addTodo: (todo: Todo) => void;
+    todos: ITodo[];
+    addTodo: (todo: ITodo) => void;
     completeTodo: (index: number) => void;
 }
 

@@ -14,6 +14,9 @@ export interface ITodoResponse {
 export class ApplicationStore {
     @observable
     public todos = new Array<ITodo>();
+    public constructor() {
+        this.loadTodos();
+    }
 
     @action
     public addTodo = (todo: ITodo) => {
