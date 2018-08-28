@@ -1,16 +1,17 @@
-import * as React from 'react';
-import { observer } from 'mobx-react';
-import { Button, Container, NumberDisplay } from './styles';
+import * as React from "react";
 
-interface HomeProps {
+import { observer } from "mobx-react";
+import { Button, Container, NumberDisplay } from "./styles";
+
+interface IHomeProps {
     counter: number;
     increment: () => void;
     decrement: () => void;
 }
 
 @observer
-export class Home extends React.Component<HomeProps, {}> {
-    render() {
+export class Home extends React.Component<IHomeProps, {}> {
+    public render() {
         const {
             counter,
             increment,
@@ -23,6 +24,6 @@ export class Home extends React.Component<HomeProps, {}> {
                 <NumberDisplay>{counter}</NumberDisplay>
                 <Button onClick={increment}>+</Button>
             </Container>
-        )
+        );
     }
 }

@@ -1,60 +1,36 @@
-import * as React from 'react';
-import * as Autosuggest from 'react-autosuggest';
-import {Todo} from '../../stores/ApplicationStore';
-import TextInput from 'mineral-ui/TextInput';
-import {FormField} from 'mineral-ui/Form'
-import './AutoCompleteStyle.css';
+import * as React from "react";
+import * as Autosuggest from "react-autosuggest";
 
-interface AutocompleteProps {
-  source: any[],
-  value: string,
-  onChange: (event: any, obj: any)=>void,
-  getSuggestions: (value: string, source: any)=>any[],
-  getFormatedString: (value: any)=>string
+import {Todo} from "../../stores/ApplicationStore";
+
+import {FormField} from "mineral-ui/Form";
+import TextInput from "mineral-ui/TextInput";
+import "./AutoCompleteStyle.css";
+
+interface IAutocompleteProps {
+  source: any[];
+  value: string;
+  onChange: (event: any, obj: any) => void;
+  getSuggestions: (value: string, source: any) => any[];
+  getFormatedString: (value: any) => string;
 }
 
-interface AutocompleteState {
-  suggestions: any[]
+interface IAutocompleteState {
+  suggestions: any[];
 }
 
-export class AutoComplete extends React.Component<AutocompleteProps,AutocompleteState>{
+export class AutoComplete extends React.Component<IAutocompleteProps, IAutocompleteState> {
   constructor(props) {
     super(props);
-    this.state = {suggestions: []}
+    this.state = {suggestions: []};
   }
 
-  renderSuggestion = suggestion => (
-    <div>
-      {this.props.getFormatedString(suggestion)}
-    </div>
-  );
-
-  onSuggestionsFetchRequested = ({ value }) => {
-    this.setState({
-      suggestions: this.props.getSuggestions(value, this.props.source)
-    });
-  };
-
-  onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: []
-    });
-  };
-
-  renderInputComponent = inputProps => {
-    return (
-      <FormField label="Test">
-        <TextInput {...inputProps}/>
-      </FormField>
-    )
-  }
-
-  render() {
+  public render() {
     const {value, onChange} = this.props;
 
     const inputProps = {
+      onChange,
       value,
-      onChange
     };
 
     return (
@@ -67,6 +43,32 @@ export class AutoComplete extends React.Component<AutocompleteProps,Autocomplete
         renderSuggestion={this.renderSuggestion}
         inputProps={inputProps}
       />
+    );
+  }
+
+  private renderSuggestion = (suggestion) => (
+    <div>
+      {this.props.getFormatedString(suggestion)}
+    </div>
+  )
+
+  private onSuggestionsFetchRequested = ({ value }) => {
+    this.setState({
+      suggestions: this.props.getSuggestions(value, this.props.source),
+    });
+  }
+
+  private onSuggestionsClearRequested = () => {
+    this.setState({
+      suggestions: [],
+    });
+  }
+
+  private renderInputComponent = (inputProps) => {
+    return (
+      <FormField label="Test">
+        <TextInput {...inputProps}/>
+      </FormField>
     );
   }
 }

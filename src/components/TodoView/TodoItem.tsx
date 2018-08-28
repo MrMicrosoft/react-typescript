@@ -1,29 +1,23 @@
-import * as React from 'react';
-import { observer } from 'mobx-react';
-import {Todo} from '../../stores/ApplicationStore';
-import {Container} from './styles';
-import Card, {CardTitle, CardBlock} from 'mineral-ui/Card';
-import Checkbox from 'mineral-ui/Checkbox';
+import * as React from "react";
 
-interface TodoItemProps {
-    todo: Todo;
+import { observer } from "mobx-react";
+import {ITodo} from "../../stores/ApplicationStore";
+import {Container} from "./styles";
+
+import Card, {CardBlock, CardTitle} from "mineral-ui/Card";
+import Checkbox from "mineral-ui/Checkbox";
+
+interface ITodoItemProps {
+    todo: ITodo;
     index: number;
     completeTodo: (index: number) => void;
 }
 
 @observer
-export class TodoItem extends React.Component<TodoItemProps, {}> {
-    onChangeCheckbox=(event)=>{
+export class TodoItem extends React.Component<ITodoItemProps, {}> {
+    public render() {
         const {
-            completeTodo,
-            index
-        } = this.props;
-        completeTodo(index);
-    }
-
-    render() {
-        const {
-            todo
+            todo,
         } = this.props;
 
         return (
@@ -38,6 +32,13 @@ export class TodoItem extends React.Component<TodoItemProps, {}> {
                     />
                 </CardBlock>
             </Card>
-        )
+        );
+    }
+    private onChangeCheckbox = (event) => {
+        const {
+            completeTodo,
+            index,
+        } = this.props;
+        completeTodo(index);
     }
 }
