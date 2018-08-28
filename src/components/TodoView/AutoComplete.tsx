@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Autosuggest from "react-autosuggest";
 
-import {Todo} from "../../stores/ApplicationStore";
+import {ITodo} from "../../stores/ApplicationStore";
 
 import {FormField} from "mineral-ui/Form";
 import TextInput from "mineral-ui/TextInput";

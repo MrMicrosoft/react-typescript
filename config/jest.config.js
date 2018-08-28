@@ -1,5 +1,7 @@
 module.exports = {
     rootDir: '../',
+    verbose: true,
+    testURL: "http://localhost/",
     setupTestFrameworkScriptFile: "<rootDir>/src/setupTests.js",
     transform: {
       "^.+\\.tsx?$": "ts-jest"
