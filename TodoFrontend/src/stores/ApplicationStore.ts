@@ -1,4 +1,5 @@
 import { action, observable } from "mobx";
+import { loadTodosService } from "./Services/todoService";
 
 export interface ITodo {
     disc: string;
@@ -6,17 +7,9 @@ export interface ITodo {
     id: number;
 }
 
-export interface ITodoResponse {
-    success: boolean;
-    data: ITodo[];
-}
-
 export class ApplicationStore {
     @observable
     public todos = new Array<ITodo>();
-    public constructor() {
-        this.loadTodos();
-    }
 
     @action
     public addTodo = (todo: ITodo) => {
@@ -29,22 +22,8 @@ export class ApplicationStore {
     }
 
     @action
-    public loadTodos = () => {
-        return new Promise((resolve, rejects) => {
-            fetch("http://localhost:8000/todo", {method: "GET"})
-            .then((response) => response.json())
-            .then((json) => {
-                if (json.success) {
-                    const response: ITodoResponse = {
-                        data: json.data,
-                        success: json.success,
-                    };
-                    this.todos.push(...json.data);
-                    resolve(response);
-                } else {
-                    rejects(new Error(json.err));
-                }
-            });
-        });
+    public async loadTodos() {
+        const loadedTodos = await loadTodosService();
+        this.todos.push(...loadedTodos);
     }
 }

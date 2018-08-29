@@ -1,6 +1,7 @@
-import { ApplicationStore } from "./ApplicationStore";
+import { ApplicationStore, ITodo } from "./ApplicationStore";
 
 import * as fetchMock from "fetch-mock";
+import { loadTodosService } from "./Services/todoService";
 
 test("inital todos is empty", () => {
     const applicationStore = new ApplicationStore();
@@ -26,7 +27,6 @@ test("complete Todo changes Todo State to done", () => {
 });
 
 describe("Test Async", () => {
-
     afterEach(fetchMock.restore);
 
     it("Fetch Todos: Success", () => {
@@ -39,9 +39,8 @@ describe("Test Async", () => {
             },
             status: 200,
         });
-        const applicationStore = new ApplicationStore();
-        applicationStore.loadTodos().then((response) => {
-            expect(applicationStore.todos.length).toBe(1);
+        loadTodosService().then((loadedTodos: ITodo[]) => {
+            expect(loadedTodos.length).toBe(1);
         });
     });
 
@@ -53,9 +52,8 @@ describe("Test Async", () => {
             },
             status: 200,
         });
-        const applicationStore = new ApplicationStore();
-        applicationStore.loadTodos().catch((err) => {
-            expect(err.message).toBe(new Error("Cannot read File").message);
+        loadTodosService().catch((err: Error) => {
+            expect(err.message).toBe("Success False");
         });
     });
 });
