@@ -8,6 +8,7 @@ branches:
   - master
 
 install:
+  - cd TodoFrontend
   - npm install
 
 script:
@@ -15,4 +16,4 @@ script:
 
 cache:
   directories:
-    - node_modules
+    - TodoFrontend/node_modules
