@@ -1,0 +1,19 @@
+version: '2.1'
+
+services:
+  typescript-frontend:
+    image: typescript-frontend
+    build: TodoFrontend
+    environment:
+      NODE_ENV: development
+    ports:
+      - 9000:9000
+    command: npm start
+  typescript-backend:
+    image: typescript-backend
+    build: TodoApi
+    enviroment:
+     NODE_ENV: development
+     ports:
+      - 8000:8000
+    command: npm start
